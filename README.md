@@ -1,1 +1,1 @@
-# itixo-timesheets
+# ITIXO Timesheets
