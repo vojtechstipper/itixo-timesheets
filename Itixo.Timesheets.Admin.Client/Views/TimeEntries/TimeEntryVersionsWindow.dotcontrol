@@ -1,0 +1,33 @@
+﻿@viewModel Itixo.Timesheets.Admin.Client.ViewModels.TimeEntryVersionsViewModel, Itixo.Timesheets.Admin.Client
+@noWrapperTag
+@import Itixo.Timesheets.Shared.Resources.AdminClient
+
+
+<bs:ModalDialog HeaderText="{{resource: Texts.TimeEntries_Modal_Versions_Title}}" IsDisplayed="{value: IsModalDisplayed}" Size="Extralarge">
+    <ContentTemplate>
+        <label>
+            {{resource: Texts.TimeEntries_Modal_Versions_Compare}}
+            <span class="text-warning">{{resource: Texts.TimeEntries_Modal_Versions_Changed}}</span> {{resource: Texts.And}}
+            <span class="text-success">{{resource: Texts.TimeEntries_Modal_Versions_NoChanged}}</span>
+            {{resource: Texts.TimeEntries_Modal_Versions_EntriesWithPrevious}}
+        </label>
+        <bp:GridView DataSource="{value: VersionsDataSet}">
+            <Columns>
+                <bp:GridViewTextColumn Value="{value: DisplayLastModifiedDate}" HeaderText="{{resource: Texts.TimeEntries_TableHeader_ChangeDate}}" />
+                <bp:GridViewTextColumn Value="{value: DisplayImportedDate}" HeaderText="{{resource: Texts.TimeEntries_TableHeader_ImportedDate}}" />
+                <bp:GridViewTextColumn Value="{value: Description}" HeaderText="{{resource: Texts.TimeEntries_TableHeader_Description}}"
+                                       CssClass="{value: WasDescriptionChanged ? "text-warning" : "text-success"}" />
+                <bp:GridViewTextColumn Value="{value: ProjectName}" HeaderText="{{resource: Texts.TimeEntries_TableHeader_ProjectName}}"
+                                       CssClass="{value: WasProjectNameChanged ? "text-warning" : "text-success"}" />
+                <bp:GridViewTextColumn Value="{value: TaskName}" HeaderText="{{resource: Texts.TimeEntries_TableHeader_TaskName}}"
+                                       CssClass="{value: WasTaskNameChanged ? "text-warning" : "text-success"}" />
+                <bp:GridViewTextColumn Value="{value: Duration}" HeaderText="{{resource: Texts.TimeEntries_TableHeader_Duration}}" />
+                <bp:GridViewTextColumn Value="{value: DisplayStartTime }" HeaderText="{{resource: Texts.TimeEntries_TableHeader_From}}"
+                                       CssClass="{value: WasStartTimeChanged ? "text-warning" : "text-success"}" />
+                <bp:GridViewTextColumn Value="{value: DisplayStopTime }" HeaderText="{{resource: Texts.TimeEntries_TableHeader_To}}"
+                                       CssClass="{value: WasStopTimeChanged ? "text-warning" : "text-success"}" />
+            </Columns>
+        </bp:GridView>
+    </ContentTemplate>
+</bs:ModalDialog>
+

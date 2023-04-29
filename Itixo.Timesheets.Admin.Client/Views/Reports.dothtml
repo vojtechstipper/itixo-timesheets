@@ -1,0 +1,188 @@
+﻿@viewModel Itixo.Timesheets.Admin.Client.ViewModels.ReportsViewModel, Itixo.Timesheets.Admin.Client
+@masterPage Views/Base/MasterPage.dotmaster
+@import Itixo.Timesheets.Shared.Resources.AdminClient
+
+<dot:Content ContentPlaceHolderID="MainContent">
+    <div class="container-fluid">
+        <div class="row col-sm justify-content-center align-items-center m-1">
+            <bs:Card class="col-sm-2">
+                <HeaderTemplate>{{resource: Texts.Report_Filter_Title}}</HeaderTemplate>
+                <bs:CardBody>
+                    <div class="h-50">
+                        <bp:MultiSelect DataSource="{value: Projects}" SelectedValues="{value: SelectedProjects}" Placeholder="{{resource: Texts.TimeEntries_Filter_ByProject}}"
+                                        ItemTextBinding="{value: Name}" ItemKeyBinding="{value: Id}" class="col w-100 align-middle" />
+                    </div>
+                    <div class="h-50">
+                        <bp:MultiSelect DataSource="{value: Clients}" SelectedValues="{value: SelectedClients}" Placeholder="{{resource: Texts.TimeEntries_Filter_ByClient}}"
+                                        ItemTextBinding="{value: Name}" ItemKeyBinding="{value: Id}" class="col w-100 align-middle" Changed="{command: LoadProjects()}" />
+                    </div>
+                </bs:CardBody>
+            </bs:Card>
+            <bs:Card class="col-sm-3">
+                <HeaderTemplate>{{resource: Texts.TimeEntries_DateRange}}</HeaderTemplate>
+                <bs:CardBody>
+                    <bp:DatePicker SelectedDate="{value: FromDate}" MaxDateTime="{value: ToDate}" FormatString="dd.MM.yyyy" />
+                    <bp:DatePicker SelectedDate="{value: ToDate}" MinDateTime="{value: FromDate}" FormatString="dd.MM.yyyy" />
+                </bs:CardBody>
+            </bs:Card>
+        </div>
+        <div class="row col-sm justify-content-center m-1">
+            <bs:Button Type="Primary" Text="{{resource: Texts.TimeEntries_Filter_Run}}" Click="{command: Filter()}" style="width: 200px;" />
+        </div>
+    </div>
+    <div class="row col-sm justify-content-center align-items-center">
+        <div class="row">
+            <div class="col-sm">
+                <div class="p-3 m-2">
+                    <dot:Literal class="small font-weight-bold" Text="{{resource: Texts.TimeEntries_Summary}}" />
+                    <dot:Literal class="small" Text="{value: AccountReportGridSummaryModel.TotalSummaryDurationAllEntriesFormmated}" />
+                    <dot:Literal class="small" Text="|" />
+                    <dot:Literal class="small font-weight-bold" Text="{{resource: Texts.TimeEntries_SummaryApproves}}" />
+                    <dot:Literal class="small" Text="{value: AccountReportGridSummaryModel.TotalSummaryDurationApprovesFormmated}" />
+                    <dot:Literal class="small" Text="|" />
+                    <dot:Literal class="small font-weight-bold" Text="{{resource: Texts.TimeEntries_SummaryDrafts}}" />
+                    <dot:Literal class="small" Text="{value: AccountReportGridSummaryModel.TotalSummaryDurationDraftsFormmated}" />
+                    <dot:Literal class="small" Text="|" />
+                    <dot:Literal class="small font-weight-bold" Text="{{resource: Texts.TimeEntries_SummaryBans}}" />
+                    <dot:Literal class="small" Text="{value: AccountReportGridSummaryModel.TotalSummaryDurationBansFormmated}" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column col-sm justify-content-center align-items-center">
+        <bp:GridView DataSource="{value: ReportsGridViewDataSet}" ShowTableWhenNoData="true">
+            <Columns>
+                <bp:GridViewTemplateColumn HeaderText="{{resource: Texts.TimeEntries_TableHeader_UserName}}" AllowSorting="true" SortExpression="Username" CssClass="text-center">
+                    <ContentTemplate>
+                        <dot:RouteLink RouteName="TimeEntries" Text="{value: Username}" Query-uids="{value: TimeTrackerAccountId}" Query-pids="{value: _root.SelectedProjectIds}"
+                                       Query-cids="{value: _root.SelectedClientIds}" Query-from="{value: _root.FromDate}" Query-to="{value: _root.ToDate}" />
+                    </ContentTemplate>
+                </bp:GridViewTemplateColumn>
+                <bp:GridViewTemplateColumn HeaderText="{{value: Texts.TimeEntries_TableHeader_ApprovedCount}}" AllowSorting="true" CssClass="text-center">
+                    <ContentTemplate>
+                        <dot:RouteLink RouteName="TimeEntries" Text="{value: SummaryDurationApprovesFormmated}" Query-a="True" Query-uids="{value: TimeTrackerAccountId}" Query-pids="{value: _root.SelectedProjectIds}"
+                                       Query-cids="{value: _root.SelectedClientIds}" Query-from="{value: _root.FromDate}" Query-to="{value: _root.ToDate}" />
+                    </ContentTemplate>
+                </bp:GridViewTemplateColumn>
+                <bp:GridViewTemplateColumn HeaderText="{{value: Texts.TimeEntries_TableHeader_CanceledCount}}" AllowSorting="true" CssClass="text-center">
+                    <ContentTemplate>
+                        <dot:RouteLink RouteName="TimeEntries" Text="{value: SummaryDurationBansFormmated}" Query-b="True" Query-uids="{value: TimeTrackerAccountId}" Query-pids="{value: _root.SelectedProjectIds}"
+                                       Query-cids="{value: _root.SelectedClientIds}" Query-from="{value: _root.FromDate}" Query-to="{value: _root.ToDate}" />
+                    </ContentTemplate>
+                </bp:GridViewTemplateColumn>
+                <bp:GridViewTemplateColumn HeaderText="{{value: Texts.TimeEntries_TableHeader_ToAprroveCount}}" AllowSorting="true" CssClass="text-center">
+                    <ContentTemplate>
+                        <dot:RouteLink RouteName="TimeEntries" Text="{value: SummaryDurationDraftsFormmated}" Query-d="True" Query-uids="{value: TimeTrackerAccountId}" Query-pids="{value: _root.SelectedProjectIds}"
+                                       Query-cids="{value: _root.SelectedClientIds}" Query-from="{value: _root.FromDate}" Query-to="{value: _root.ToDate}" />
+                    </ContentTemplate>
+                </bp:GridViewTemplateColumn>
+                <bp:GridViewTemplateColumn HeaderText="{{value: Texts.TimeEntries_TableHeader_TotalCount}}" AllowSorting="true" CssClass="text-center">
+                    <ContentTemplate>
+                        <dot:RouteLink RouteName="TimeEntries" Text="{value: SummaryDurationAllEntriesFormmated}" Query-d="True" Query-a="True" Query-uids="{value: TimeTrackerAccountId}" Query-pids="{value: _root.SelectedProjectIds}"
+                                       Query-cids="{value: _root.SelectedClientIds}" Query-from="{value: _root.FromDate}" Query-to="{value: _root.ToDate}" />
+                    </ContentTemplate>
+                </bp:GridViewTemplateColumn>
+                <bp:GridViewTemplateColumn HeaderText="{{resource: Texts.TimeEntries_TableHeader_Actions}}">
+                    <ContentTemplate>
+                        <dot:RoleView Roles="TimeEntries.Administrator">
+                            <bs:Button Type="Secondary" Text="{{resource: Texts.TimeEntries_TableHeader_Action_AddInvoice}}" Click="{command: _root.InvoiceModalContext.SetInvoice(_this.TimeTrackerAccountId)}" />
+                        </dot:RoleView>
+                    </ContentTemplate>
+                </bp:GridViewTemplateColumn>
+            </Columns>
+        </bp:GridView>
+        <bp:DataPager DataSet="{value: ReportsGridViewDataSet}" />
+
+    </div>
+
+    <bs:ModalDialog DataContext="{value: InvoiceModalContext}" IsDisplayed="{value: IsDisplayed}" CloseOnEscape="false" CloseOnBackdropClick="false">
+        <HeaderTemplate>
+            <div class="row w-100">
+                <div class="col-2">
+                    <bs:Icon Type="box_arrow_in_left" Visible="{value: IsIncludeOfferStateActive}" Events.Click="{command: SetInvoice(_this.TimeTrackerAccountId)}" />
+                </div>
+                <div class="col-8 text-center">
+                    {{value: HeaderText}}
+                </div>
+                <div class="col-2 p-0 text-right">
+                    <bs:CloseButton Events.Click="{command: Clear()}" Visible="{value: !IsShowResultsStateActive}" />
+                </div>
+            </div>
+        </HeaderTemplate>
+
+        <div class="form-inline" Visible="{value: IsSetInvoiceStateActive}">
+            <div class="form-group">
+                <label>
+                    <dot:Literal class="mr-3" Text="{{resource: Texts.TimeEntries_Modal_InvoiceNo}}" />
+                </label>
+                <bs:TextBox class="mr-3" Text="{{value: Number}}" UpdateTextOnInput="true" Changed="{command: IncludeOffer()}" />
+            </div>
+                <bs:Button Type="Success" Text="{{resource: Texts.TimeEntries_AddInvoice}}" Click="{command: IncludeOffer()}" Enabled="{value: Number.Length > 0}" />
+            
+        </div>
+
+        <div class="row" style="padding: 5px;" Visible="{value: IsIncludeOfferStateActive}">
+            <bs:Form Type="Default" class="w-100">
+                <bs:FormGroup class="w-100">
+                    <div class="w-100 col row">
+                        <div class="col-2">
+                            <bp:CheckBox ID="cb-approved" Checked="{value: IncludeApproved}" PostBack.Update="true" />
+                        </div>
+                        <div class="col-10 text-left">
+                            <label for="cb-approved">{{resource: Texts.TimeEntries_Modal_AddApprovedEntries}}</label>
+                        </div>
+                    </div>
+                </bs:FormGroup>
+                <bs:FormGroup class="w-100">
+                    <div class="w-100 col row">
+                        <div class="col-2">
+                            <bp:CheckBox Checked="{value: IncludeDrafts}" />
+                        </div>
+                        <div class="col-10">
+                            <label>{{resource: Texts.TimeEntries_Modal_AddToApproveEntries}}</label>
+                        </div>
+                    </div>
+                </bs:FormGroup>
+                <bs:FormGroup class="w-100">
+                    <div class="w-100 col row">
+                        <div class="col-2">
+                            <bp:CheckBox Checked="{value: IncludeBans}" />
+                        </div>
+                        <div class="col-10 align-left">
+                            <label>{{resource: Texts.TimeEntries_Modal_AddCanceledEntries}}</label>
+                        </div>
+                    </div>
+                </bs:FormGroup>
+                <bs:FormGroup>
+                    <bs:Button Type="Success" Text="{{resource: Texts.TimeEntries_AddInvoice}}" Click="{command: _root.AssignInvoice()}" Enabled="{value: IncludeBans || IncludeApproved || IncludeDrafts}" />
+                </bs:FormGroup>
+            </bs:Form>
+        </div>
+
+        <div class="row" style="padding: 5px;" Visible="{value: IsShowResultsStateActive}">
+            <table>
+                <tr>
+                    <td>{{resource: Texts.TimeEntries_Modal_InvoiceNo}} {{value: Number}}</td>
+                </tr>
+                <tr>
+                    <td>{{resource: Texts.TimeEntries_Modal_InvoiceAddedTo}} {{value: ApprovedTimeEntriesCount}} {{resource: Texts.TimeEntries_Modal_ApprovedEntries}}</td>
+                </tr>
+                <tr>
+                    <td>{{resource: Texts.TimeEntries_Modal_InvoiceAddedTo}} {{value: DraftedTimeEntriesCount}} {{resource: Texts.TimeEntries_Modal_EntriesToApprove}}</td>
+                </tr>
+                <tr>
+                    <td>{{resource: Texts.TimeEntries_Modal_InvoiceAddedTo}} {{value: BannedTimeEntriesCount}} {{resource: Texts.TimeEntries_Modal_CanceledEntries}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <bs:Button Type="Success" Text="{{resource: Texts.TimeEntries_Modal_Finish}}" Click="{command: Clear()}" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+</bs:ModalDialog>
+
+</dot:Content>
+

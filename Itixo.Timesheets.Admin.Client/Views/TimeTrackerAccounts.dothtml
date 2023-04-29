@@ -1,0 +1,61 @@
+﻿@viewModel Itixo.Timesheets.Admin.Client.ViewModels.TimeTrackerAccountsViewModel, Itixo.Timesheets.Admin.Client
+@masterPage Views/Base/MasterPage.dotmaster
+@import TimeTrackerType = Itixo.Timesheets.Shared.Enums.TimeTrackerType
+@import Itixo.Timesheets.Shared.Resources.AdminClient
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <div class="container-fluid" style="width: 1200px">
+        <div class="row w-100">
+            <bs:Card class="w-100">
+                <HeaderTemplate><h3>{{resource: Texts.TimeEntries_Tracker_Title}}</h3></HeaderTemplate>
+                <bs:CardBody>
+                    <bs:Form Type="Default">
+                        <bs:FormGroup LabelText="{{resource: Texts.TimeEntries_Tracker_Name}}">
+                            <bs:TextBox Text="{{value: TimeTrackerAccountDetail.Username}}" />
+                        </bs:FormGroup>
+                        <bs:FormGroup LabelText="{{resource: Texts.TimeEntries_Tracker_TrackerName}}">
+                            <bp:ComboBox DataSource="{value: TimeTrackers}" SelectedValue="{value: TimeTrackerAccountDetail.TimeTrackerContract}"
+                                         ItemKeyBinding="{value: Id}" ItemTextBinding="{value: Name}" Changed="{command: Changed()}"
+                                         Validation.Enabled="false" />
+                        </bs:FormGroup>
+                        <bs:FormGroup LabelText="{{resource: Texts.TimeEntries_Tracker_Key}}" Visible="{value: _root.IsTimeTrackerTypeOtherThanThisApplication}">
+                            <bs:TextBox Text="{{value: TimeTrackerAccountDetail.ExternalId}}" />
+                        </bs:FormGroup>
+                        <dot:ValidationSummary Validation.Enabled="true" Validation.Target="{value: _this.TimeTrackerAccountDetail}" Validator.InvalidCssClass="has-error" />
+                        <bs:FormGroup>
+                            <bs:Button Type="Success" Text="{{resource: Texts.Save}}" Click="{command: AddOrUpdateNewAccount()}" Validation.Enabled="true" />
+                            <bs:Button Type="Info" Text="{{resource: Texts.New}}" Click="{command: ClearForm()}" Enabled="{value: !TimeTrackerAccountDetail.IsEmpty}" Validation.Enabled="false" />
+                        </bs:FormGroup>
+                    </bs:Form>
+                </bs:CardBody>
+            </bs:Card>
+        </div>
+
+        <div class="row w-100">
+            <bs:Card class="w-100">
+                <HeaderTemplate><h3>{{resource: Texts.TimeEntries_Tracker_Accounts}}</h3></HeaderTemplate>
+                <bs:CardBody>
+                    <bp:GridView DataSource="{value: AccountsGridViewDataSet}" ShowTableWhenNoData="true">
+                        <Columns>
+                            <bp:GridViewTextColumn Value="{value: Username}" HeaderText="{{resource: Texts.TimeEntries_Tracker_Name}}" AllowSorting="true" />
+                            <bp:GridViewTextColumn Value="{value: ExternalId}" HeaderText="{{resource: Texts.TimeEntries_Tracker_Key}}" AllowSorting="true" />
+                            <bp:GridViewTextColumn Value="{value: TimeTracker.Name}" HeaderText="{{resource: Texts.TimeEntries_Tracker_TrackerName}}" AllowSorting="true" />
+                            <bp:GridViewTemplateColumn HeaderText="{{resource: Texts.TimeEntries_TableHeader_Actions}}">
+                                <ContentTemplate>
+                                    <ContentTemplate>
+                                        <bs:ButtonGroup>
+                                            <bs:Button Type="Danger" Text="{{resource: Texts.Delete}}" Click="{{command: _parent.DeleteAccount(_this)}}" Validation.Target="{{value: _this}}" />
+                                            <bs:Button Type="Info" Text="{{resource: Texts.Edit}}" Click="{{command: _parent.SelectAccount(_this)}}" Validation.Target="{{value: _this}}" />
+                                        </bs:ButtonGroup>
+                                    </ContentTemplate>
+                                </ContentTemplate>
+                            </bp:GridViewTemplateColumn>
+                        </Columns>
+                    </bp:GridView>
+                </bs:CardBody>
+            </bs:Card>
+        </div>
+    </div>
+
+</dot:Content>

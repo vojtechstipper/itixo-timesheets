@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "library": "@microsoft/signalr@latest",
+      "destination": "wwwroot/js/signalr/",
+      "files": [
+        "dist/browser/signalr.js",
+        "dist/browser/signalr.min.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "mdbootstrap@4.19.1",
+      "destination": "wwwroot/lib/mdbootstrap/",
+      "files": [
+        "js/mdb.js",
+        "js/mdb.lite.min.js.map",
+        "css/mdb.css",
+        "css/mdb.lite.css",
+        "css/mdb.lite.min.css",
+        "css/mdb.lite.min.css.map",
+        "css/mdb.min.css",
+        "css/mdb.min.css.map",
+        "img/overlays/01.png",
+        "img/overlays/02.png",
+        "img/overlays/03.png",
+        "img/overlays/04.png",
+        "img/overlays/05.png",
+        "img/overlays/06.png",
+        "img/overlays/07.png",
+        "img/overlays/08.png",
+        "img/overlays/09.png",
+        "img/svg/arrow_left.svg",
+        "img/svg/arrow_right.svg",
+        "img/svg/flags.png",
+        "js/mdb.min.js",
+        "js/mdb.min.js.map"
+      ]
+    }
+  ]
+}

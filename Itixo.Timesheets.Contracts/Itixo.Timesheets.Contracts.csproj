@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Itixo.Timesheets.Domain\Itixo.Timesheets.Domain.csproj" />
+    <ProjectReference Include="..\Itixo.Timesheets.Shared\Itixo.Timesheets.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

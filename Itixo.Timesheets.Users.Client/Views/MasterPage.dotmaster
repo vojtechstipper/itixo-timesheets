@@ -1,0 +1,34 @@
+﻿@viewModel Itixo.Timesheets.Users.Client.ViewModels.MasterPageViewModel, Itixo.Timesheets.Users.Client
+@import DotVVM.BusinessPack.Controls
+@import Itixo.Timesheets.Shared.Resources.UserClient
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Itixo.Toggl.UsersForm</title>
+</head>
+<body class="container-fluid">
+    <div class="row">
+        <dot:LinkButton Click="{{command: Logout()}}" Text="{{resource: Texts.Logout}}" />
+    </div>
+
+    <div class="row">
+        <dot:ContentPlaceHolder ID="MainContent" />
+    </div>
+
+    <bs:Toast class="toast align-right" role="alert" aria-live="assertive" aria-atomic="true" AutoHideDelay="20" IsDisplayed="{value: IsDisplayed}"
+              DataContext="{value: DialogModel}" style="position: absolute; top: 0; right: 0; min-width: 400px;">
+        <HeaderTemplate>
+            <div ID="notify-primary" class="rounded mr-2 bg-primary" style="width:25px;height:20px" Visible="{value: Type == AlertType.Info}" />
+            <div ID="notify-success" class="rounded mr-2 bg-success" style="width:25px;height:20px" Visible="{value: Type == AlertType.Success}" />
+            <div ID="notify-danger" class="rounded mr-2 bg-danger" style="width:25px;height:20px" Visible="{value: Type == AlertType.Danger}" />
+            <strong class="w-100">{{resource: Texts.Warning}}</strong>
+        </HeaderTemplate>
+        <ContentTemplate>
+            <dot:HtmlLiteral Html="{{value: Message}}"></dot:HtmlLiteral>
+        </ContentTemplate>
+    </bs:Toast>
+</body>
+</html>

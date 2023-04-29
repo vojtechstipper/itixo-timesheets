@@ -1,0 +1,100 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200720131301_test2.cs" />
+    <Compile Remove="Migrations\20200720131301_test2.Designer.cs" />
+    <Compile Remove="Migrations\20200729085253_rename TimeTrackingUser to TimeTrackerAccount 2.cs" />
+    <Compile Remove="Migrations\20200729085253_rename TimeTrackingUser to TimeTrackerAccount 2.Designer.cs" />
+    <Compile Remove="Migrations\20200729102838_test45646.cs" />
+    <Compile Remove="Migrations\20200729102838_test45646.Designer.cs" />
+    <Compile Remove="Migrations\20200729103057_test45646.cs" />
+    <Compile Remove="Migrations\20200729103057_test45646.Designer.cs" />
+    <Compile Remove="Migrations\20200729103428_test45646.cs" />
+    <Compile Remove="Migrations\20200729103428_test45646.Designer.cs" />
+    <Compile Remove="Migrations\20200729105451_test45646.cs" />
+    <Compile Remove="Migrations\20200729105451_test45646.Designer.cs" />
+    <Compile Remove="Migrations\20200729105656_test45646.cs" />
+    <Compile Remove="Migrations\20200729105656_test45646.Designer.cs" />
+    <Compile Remove="Migrations\20200729110422_test45646.cs" />
+    <Compile Remove="Migrations\20200729110422_test45646.Designer.cs" />
+    <Compile Remove="Migrations\20200729112148_test45646.cs" />
+    <Compile Remove="Migrations\20200729112148_test45646.Designer.cs" />
+    <Compile Remove="Migrations\20200729112358_test45646.cs" />
+    <Compile Remove="Migrations\20200729112358_test45646.Designer.cs" />
+    <Compile Remove="Migrations\20200729112912_test45646.cs" />
+    <Compile Remove="Migrations\20200729112912_test45646.Designer.cs" />
+    <Compile Remove="Migrations\20200730064443_test5446.cs" />
+    <Compile Remove="Migrations\20200730064443_test5446.Designer.cs" />
+    <Compile Remove="Migrations\20200804095648_changed mapping of StartTime and StopTime in TimeEntryBase tables.cs" />
+    <Compile Remove="Migrations\20200804095648_changed mapping of StartTime and StopTime in TimeEntryBase tables.Designer.cs" />
+    <Compile Remove="Migrations\20200804125814_UserInfo and Role many to many.cs" />
+    <Compile Remove="Migrations\20200804125814_UserInfo and Role many to many.Designer.cs" />
+    <Compile Remove="Migrations\20200804130027_UserInfo and Role many to many.cs" />
+    <Compile Remove="Migrations\20200804130027_UserInfo and Role many to many.Designer.cs" />
+    <Compile Remove="Migrations\20200804130224_UserInfo and Role many to many.cs" />
+    <Compile Remove="Migrations\20200804130224_UserInfo and Role many to many.Designer.cs" />
+    <Compile Remove="Migrations\20200826111343_create TimeEntryInvalid table.cs" />
+    <Compile Remove="Migrations\20200826111343_create TimeEntryInvalid table.Designer.cs" />
+    <Compile Remove="Migrations\20200827082253_applying utc format at all datetimes.cs" />
+    <Compile Remove="Migrations\20200827082253_applying utc format at all datetimes.Designer.cs" />
+    <Compile Remove="Migrations\20200902080308_adding SynchronizationHistory.cs" />
+    <Compile Remove="Migrations\20200902080308_adding SynchronizationHistory.Designer.cs" />
+    <Compile Remove="Migrations\20200902163321_test456.cs" />
+    <Compile Remove="Migrations\20200902163321_test456.Designer.cs" />
+    <Compile Remove="Migrations\20200903065455_LogSyncRecord.StoppedDate make not nullable.cs" />
+    <Compile Remove="Migrations\20200903065455_LogSyncRecord.StoppedDate make not nullable.Designer.cs" />
+    <Compile Remove="Migrations\20201001071846_new model of timeentries.cs" />
+    <Compile Remove="Migrations\20201001071846_new model of timeentries.Designer.cs" />
+    <Compile Remove="Migrations\20201001075838_TimeEntryParams as own type.cs" />
+    <Compile Remove="Migrations\20201001075838_TimeEntryParams as own type.Designer.cs" />
+    <Compile Remove="Migrations\20201001080952_TimeEntryParams as own type.cs" />
+    <Compile Remove="Migrations\20201001080952_TimeEntryParams as own type.Designer.cs" />
+    <Compile Remove="Migrations\20201001124547_timeentry changes.cs" />
+    <Compile Remove="Migrations\20201001124547_timeentry changes.Designer.cs" />
+    <Compile Remove="Migrations\20201016061945_test124.cs" />
+    <Compile Remove="Migrations\20201016061945_test124.Designer.cs" />
+    <Compile Remove="Migrations\20201016095324_TimeEntryVersion.LastDateModified non-nullable.cs" />
+    <Compile Remove="Migrations\20201016095324_TimeEntryVersion.LastDateModified non-nullable.Designer.cs" />
+    <Compile Remove="Migrations\20201022163551_TimeEntry StateMachine own type.cs" />
+    <Compile Remove="Migrations\20201022163551_TimeEntry StateMachine own type.Designer.cs" />
+    <Compile Remove="Migrations\20201022164049_TimeEntry StateMachine own type.cs" />
+    <Compile Remove="Migrations\20201022164049_TimeEntry StateMachine own type.Designer.cs" />
+    <Compile Remove="Migrations\20201022164312_TimeEntry StateMachine own type.cs" />
+    <Compile Remove="Migrations\20201022164312_TimeEntry StateMachine own type.Designer.cs" />
+    <Compile Remove="Migrations\20201022164532_TimeEntry StateMachine own type.cs" />
+    <Compile Remove="Migrations\20201022164532_TimeEntry StateMachine own type.Designer.cs" />
+    <Compile Remove="Migrations\20201026134024_TimeEntryStateChange.CreatedDate valueGenerator.cs" />
+    <Compile Remove="Migrations\20201026134024_TimeEntryStateChange.CreatedDate valueGenerator.Designer.cs" />
+    <Compile Remove="Migrations\20201104142134_DateTimes to DateTimeOffsets.cs" />
+    <Compile Remove="Migrations\20201104142134_DateTimes to DateTimeOffsets.Designer.cs" />
+    <Compile Remove="Migrations\20201106093756_test546546.cs" />
+    <Compile Remove="Migrations\20201106093756_test546546.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EFCore.BulkExtensions" Version="6.6.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Scrutor" Version="4.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Itixo.Timesheets.Application\Itixo.Timesheets.Application.csproj" />
+    <ProjectReference Include="..\Itixo.Timesheets.Domain\Itixo.Timesheets.Domain.csproj" />
+    <ProjectReference Include="..\Itixo.Timesheets.Shared\Itixo.Timesheets.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

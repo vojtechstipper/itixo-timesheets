@@ -1,0 +1,19 @@
+﻿@viewModel Itixo.Timesheets.Admin.Client.ViewModels.TimeEntryStateChangesViewModel, Itixo.Timesheets.Admin.Client
+@noWrapperTag
+@import Itixo.Timesheets.Shared.Resources.AdminClient
+
+<bs:ModalDialog HeaderText="{{resource: Texts.TimeEntries_Modal_ChangeStateDetail_Title}}" IsDisplayed="{value: IsModalDisplayed}" Size="Extralarge">
+    <ContentTemplate>
+        <bp:GridView DataSource="{value: StateChangesDataSet}">
+            <Columns>
+                <bp:GridViewTextColumn Value="{value: Who}" HeaderText="{{resource: Texts.TimeEntries_Modal_ChangeStateDetail_Who}}" />
+                <bp:GridViewTextColumn Value="{value: DisplayWhen}" HeaderText="{{resource: Texts.TimeEntries_Modal_ChangeStateDetail_When}}" />
+                <bp:GridViewTextColumn Value="{value: Why}" HeaderText="{{resource: Texts.TimeEntries_Modal_ChangeStateDetail_Why}}" />
+                <bp:GridViewTextColumn Value="{value: From}" HeaderText="{{resource: Texts.TimeEntries_Modal_ChangeStateDetail_From}}" />
+                <bp:GridViewTextColumn Value="{value: To}" HeaderText="{{resource: Texts.TimeEntries_Modal_ChangeStateDetail_To}}" />
+            </Columns>
+        </bp:GridView>
+    </ContentTemplate>
+</bs:ModalDialog>
+
+

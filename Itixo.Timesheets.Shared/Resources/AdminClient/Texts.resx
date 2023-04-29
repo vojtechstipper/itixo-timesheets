@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account_AddText" xml:space="preserve">
+    <value>Nejprve přidejte svůj první účet v sekci </value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>a</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Smazat</value>
+  </data>
+  <data name="Dialog_Warning" xml:space="preserve">
+    <value>Upozornění</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Editovat</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Error_404_Reason" xml:space="preserve">
+    <value>STRÁNKA NENALEZENA</value>
+  </data>
+  <data name="Error_404_Title" xml:space="preserve">
+    <value>404</value>
+  </data>
+  <data name="Error_500_Reason" xml:space="preserve">
+    <value>NEOČEKÁVANÁ CHYBA APLIKACE</value>
+  </data>
+  <data name="Error_500_Title" xml:space="preserve">
+    <value>500</value>
+  </data>
+  <data name="Error_GoBack" xml:space="preserve">
+    <value>Zpět na hlavní stránku</value>
+  </data>
+  <data name="Nav_Dropdown_Account_Accounts" xml:space="preserve">
+    <value>Účty</value>
+  </data>
+  <data name="Nav_Dropdown_Account_Logout" xml:space="preserve">
+    <value>Odhlásit</value>
+  </data>
+  <data name="Nav_Dropdown_Account_Settings" xml:space="preserve">
+    <value>Nastavení</value>
+  </data>
+  <data name="Nav_Dropdown_Synchronization" xml:space="preserve">
+    <value>Synchronizace</value>
+  </data>
+  <data name="Nav_Dropdown_Synchronization_History" xml:space="preserve">
+    <value>Historie</value>
+  </data>
+  <data name="Nav_Dropdown_Synchronization_Synchronizator" xml:space="preserve">
+    <value>Synchronizátor</value>
+  </data>
+  <data name="Nav_Dropdown_TimeEntries" xml:space="preserve">
+    <value>Záznamy</value>
+  </data>
+  <data name="Nav_Dropdown_TimeEntries_Add" xml:space="preserve">
+    <value>Přidat záznam</value>
+  </data>
+  <data name="Nav_Dropdown_TimeEntries_Detail" xml:space="preserve">
+    <value>Detailní</value>
+  </data>
+  <data name="Nav_Dropdown_TimeEntries_PreDelete" xml:space="preserve">
+    <value>Záznamy ke smazání</value>
+  </data>
+  <data name="Nav_Dropdown_TimeEntries_Sum" xml:space="preserve">
+    <value>Sumarizované</value>
+  </data>
+  <data name="Nav_Workspaces" xml:space="preserve">
+    <value>Workspaces</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Nový</value>
+  </data>
+  <data name="PreDeleteTitle" xml:space="preserve">
+    <value>Záznamy ke smazání</value>
+  </data>
+  <data name="Report_Filter_Title" xml:space="preserve">
+    <value>Filtrace</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Uložit</value>
+  </data>
+  <data name="Sync" xml:space="preserve">
+    <value>Synchronizovat</value>
+  </data>
+  <data name="Synchronizator_AutoFrom" xml:space="preserve">
+    <value>Rozmezí synchronizace pracovních dnů od </value>
+  </data>
+  <data name="Synchronizator_AutoTo" xml:space="preserve">
+    <value> do </value>
+  </data>
+  <data name="Synchronizator_Manual_From" xml:space="preserve">
+    <value>Spustit od</value>
+  </data>
+  <data name="Synchronizator_Manual_Title" xml:space="preserve">
+    <value>Ruční spuštění synchronizátoru</value>
+  </data>
+  <data name="Synchronizator_Manual_To" xml:space="preserve">
+    <value> do </value>
+  </data>
+  <data name="Synchronizator_Title" xml:space="preserve">
+    <value>Nastavení synchronizátoru</value>
+  </data>
+  <data name="Sync_History_Duration" xml:space="preserve">
+    <value>Doba trvání</value>
+  </data>
+  <data name="Sync_History_EntriesFrom" xml:space="preserve">
+    <value>Sync. záznamy od</value>
+  </data>
+  <data name="Sync_History_EntriesTo" xml:space="preserve">
+    <value>Sync. záznamy do</value>
+  </data>
+  <data name="Sync_History_InsertedApprovedCount" xml:space="preserve">
+    <value>Vloženo schválených</value>
+  </data>
+  <data name="Sync_History_InsertedDraftedCount" xml:space="preserve">
+    <value>Vloženo ke schválení</value>
+  </data>
+  <data name="Sync_History_StartTime" xml:space="preserve">
+    <value>Sync. běžel od</value>
+  </data>
+  <data name="Sync_History_State" xml:space="preserve">
+    <value>Výsledek</value>
+  </data>
+  <data name="Sync_History_StopTime" xml:space="preserve">
+    <value>Sync. běžel do</value>
+  </data>
+  <data name="Sync_History_UpdatedApprovedCount" xml:space="preserve">
+    <value>Aktualizováno schválených</value>
+  </data>
+  <data name="Sync_History_UpdatedDraftedCount" xml:space="preserve">
+    <value>Aktualizováno ke schválení</value>
+  </data>
+  <data name="Sync_History_Who" xml:space="preserve">
+    <value>Spustil</value>
+  </data>
+  <data name="TimeEntries_AddInvoice" xml:space="preserve">
+    <value>Přiřadit fakturu</value>
+  </data>
+  <data name="TimeEntries_ApproveSelected" xml:space="preserve">
+    <value>Schválit vybrané</value>
+  </data>
+  <data name="TimeEntries_CancelSelected" xml:space="preserve">
+    <value>Zamítnout vybrané</value>
+  </data>
+  <data name="TimeEntries_DateRange" xml:space="preserve">
+    <value>Rozsah konce měření</value>
+  </data>
+  <data name="TimeEntries_DeleteSelected" xml:space="preserve">
+    <value>Smazat vybrané</value>
+  </data>
+  <data name="TimeEntries_Expand" xml:space="preserve">
+    <value>Rozpadnout</value>
+  </data>
+  <data name="TimeEntries_Filter_ByClient" xml:space="preserve">
+    <value>Filtrovat dle: Klienta</value>
+  </data>
+  <data name="TimeEntries_Filter_ByInvoiceState" xml:space="preserve">
+    <value>Filtrovat dle: Stavu faktury</value>
+  </data>
+  <data name="TimeEntries_Filter_ByProject" xml:space="preserve">
+    <value>Filtrovat dle: Projektu</value>
+  </data>
+  <data name="TimeEntries_Filter_ByState" xml:space="preserve">
+    <value>Filtrovat dle: Stavu záznamu</value>
+  </data>
+  <data name="TimeEntries_Filter_ByUser" xml:space="preserve">
+    <value>Filtrovat dle: Uživatele</value>
+  </data>
+  <data name="TimeEntries_Filter_Run" xml:space="preserve">
+    <value>Filtrovat</value>
+  </data>
+  <data name="TimeEntries_Modal_AddApprovedEntries" xml:space="preserve">
+    <value>Zahrnout schválené záznamy</value>
+  </data>
+  <data name="TimeEntries_Modal_AddCanceledEntries" xml:space="preserve">
+    <value>Zahrnout zamítnuté záznamy</value>
+  </data>
+  <data name="TimeEntries_Modal_AddingInvoice" xml:space="preserve">
+    <value>Přiřazení faktury</value>
+  </data>
+  <data name="TimeEntries_Modal_AddToApproveEntries" xml:space="preserve">
+    <value>Zahrnout záznamy ke schválení</value>
+  </data>
+  <data name="TimeEntries_Modal_ApprovedEntries" xml:space="preserve">
+    <value> schválených záznamů</value>
+  </data>
+  <data name="TimeEntries_Modal_CanceledEntries" xml:space="preserve">
+    <value> zamítnutých záznamů</value>
+  </data>
+  <data name="TimeEntries_Modal_ChangeStateDetail_From" xml:space="preserve">
+    <value>Od</value>
+  </data>
+  <data name="TimeEntries_Modal_ChangeStateDetail_Title" xml:space="preserve">
+    <value>Změny stavů záznamu</value>
+  </data>
+  <data name="TimeEntries_Modal_ChangeStateDetail_To" xml:space="preserve">
+    <value>Do</value>
+  </data>
+  <data name="TimeEntries_Modal_ChangeStateDetail_When" xml:space="preserve">
+    <value>Kdy</value>
+  </data>
+  <data name="TimeEntries_Modal_ChangeStateDetail_Who" xml:space="preserve">
+    <value>Kdo</value>
+  </data>
+  <data name="TimeEntries_Modal_ChangeStateDetail_Why" xml:space="preserve">
+    <value>Proč</value>
+  </data>
+  <data name="TimeEntries_Modal_EntriesToApprove" xml:space="preserve">
+    <value> záznamů ke schválení</value>
+  </data>
+  <data name="TimeEntries_Modal_Finish" xml:space="preserve">
+    <value>Dokončit</value>
+  </data>
+  <data name="TimeEntries_Modal_InvoiceAddedTo" xml:space="preserve">
+    <value>Faktura přiřazena k </value>
+  </data>
+  <data name="TimeEntries_Modal_InvoiceNo" xml:space="preserve">
+    <value>Číslo faktury</value>
+  </data>
+  <data name="TimeEntries_Modal_Versions_Changed" xml:space="preserve">
+    <value> změněné </value>
+  </data>
+  <data name="TimeEntries_Modal_Versions_Compare" xml:space="preserve">
+    <value>Porovnání </value>
+  </data>
+  <data name="TimeEntries_Modal_Versions_EntriesWithPrevious" xml:space="preserve">
+    <value>verze záznamu s předchozí verzí</value>
+  </data>
+  <data name="TimeEntries_Modal_Versions_NoChanged" xml:space="preserve">
+    <value> nezměněné </value>
+  </data>
+  <data name="TimeEntries_Modal_Versions_Title" xml:space="preserve">
+    <value>Verze záznamu</value>
+  </data>
+  <data name="TimeEntries_New_ApproveEntry" xml:space="preserve">
+    <value>Schváli záznam</value>
+  </data>
+  <data name="TimeEntries_New_DateRange" xml:space="preserve">
+    <value>Rozmezí od - do *</value>
+  </data>
+  <data name="TimeEntries_New_Description" xml:space="preserve">
+    <value>Popis *</value>
+  </data>
+  <data name="TimeEntries_New_ProjectName" xml:space="preserve">
+    <value>Projekt *</value>
+  </data>
+  <data name="TimeEntries_New_TaskName" xml:space="preserve">
+    <value>Název tasku</value>
+  </data>
+  <data name="TimeEntries_New_Title" xml:space="preserve">
+    <value>Vytvoření záznamu</value>
+  </data>
+  <data name="TimeEntries_New_User" xml:space="preserve">
+    <value>Účet *</value>
+  </data>
+  <data name="TimeEntries_Summary" xml:space="preserve">
+    <value>Celkem: </value>
+  </data>
+  <data name="TimeEntries_SummaryApproves" xml:space="preserve">
+    <value>Celkem schválených: </value>
+  </data>
+  <data name="TimeEntries_SummaryBans" xml:space="preserve">
+    <value>Celkem zamítnutých: </value>
+  </data>
+  <data name="TimeEntries_SummaryDrafts" xml:space="preserve">
+    <value>Celkem ke schválení: </value>
+  </data>
+  <data name="TimeEntries_TableHeader_Actions" xml:space="preserve">
+    <value>Akce</value>
+  </data>
+  <data name="TimeEntries_TableHeader_Action_AddInvoice" xml:space="preserve">
+    <value>Přiřadit fakturu</value>
+  </data>
+  <data name="TimeEntries_TableHeader_Action_Approve" xml:space="preserve">
+    <value>Schválit</value>
+  </data>
+  <data name="TimeEntries_TableHeader_Action_Cancel" xml:space="preserve">
+    <value>Zamítnout</value>
+  </data>
+  <data name="TimeEntries_TableHeader_Action_Delete" xml:space="preserve">
+    <value>Smazat</value>
+  </data>
+  <data name="TimeEntries_TableHeader_ApprovedCount" xml:space="preserve">
+    <value>Schválených hodin</value>
+  </data>
+  <data name="TimeEntries_TableHeader_CanceledCount" xml:space="preserve">
+    <value>Zamítnutých hodin</value>
+  </data>
+  <data name="TimeEntries_TableHeader_ChangeDate" xml:space="preserve">
+    <value>Datum změny</value>
+  </data>
+  <data name="TimeEntries_TableHeader_Description" xml:space="preserve">
+    <value>Popis</value>
+  </data>
+  <data name="TimeEntries_TableHeader_Duration" xml:space="preserve">
+    <value>Doba trvání</value>
+  </data>
+  <data name="TimeEntries_TableHeader_EndTime" xml:space="preserve">
+    <value>Konec</value>
+  </data>
+  <data name="TimeEntries_TableHeader_From" xml:space="preserve">
+    <value>Od</value>
+  </data>
+  <data name="TimeEntries_TableHeader_IdInTimeTracker" xml:space="preserve">
+    <value>ID v měřiči</value>
+  </data>
+  <data name="TimeEntries_TableHeader_ImportedDate" xml:space="preserve">
+    <value>Čas importu</value>
+  </data>
+  <data name="TimeEntries_TableHeader_InvoiceNo" xml:space="preserve">
+    <value>Číslo faktury</value>
+  </data>
+  <data name="TimeEntries_TableHeader_ProjectName" xml:space="preserve">
+    <value>Název projektu</value>
+  </data>
+  <data name="TimeEntries_TableHeader_Select" xml:space="preserve">
+    <value>Vybrat záznam</value>
+  </data>
+  <data name="TimeEntries_TableHeader_StartTime" xml:space="preserve">
+    <value>Začátek</value>
+  </data>
+  <data name="TimeEntries_TableHeader_StateName" xml:space="preserve">
+    <value>Stav</value>
+  </data>
+  <data name="TimeEntries_TableHeader_TaskName" xml:space="preserve">
+    <value>Název tasku</value>
+  </data>
+  <data name="TimeEntries_TableHeader_To" xml:space="preserve">
+    <value>Do</value>
+  </data>
+  <data name="TimeEntries_TableHeader_ToAprroveCount" xml:space="preserve">
+    <value>Hodin ke schválení</value>
+  </data>
+  <data name="TimeEntries_TableHeader_TotalCount" xml:space="preserve">
+    <value>Celkový počet hodin</value>
+  </data>
+  <data name="TimeEntries_TableHeader_UserName" xml:space="preserve">
+    <value>Účet</value>
+  </data>
+  <data name="TimeEntries_TablePager_Next" xml:space="preserve">
+    <value>Další</value>
+  </data>
+  <data name="TimeEntries_TablePager_Previous" xml:space="preserve">
+    <value>Předchozí</value>
+  </data>
+  <data name="TimeEntries_Tracker_Accounts" xml:space="preserve">
+    <value>Účty časovače</value>
+  </data>
+  <data name="TimeEntries_Tracker_Key" xml:space="preserve">
+    <value>Klíč</value>
+  </data>
+  <data name="TimeEntries_Tracker_Name" xml:space="preserve">
+    <value>Název časovače</value>
+  </data>
+  <data name="TimeEntries_Tracker_Title" xml:space="preserve">
+    <value>Přidání/aktualizace účtu časovače</value>
+  </data>
+  <data name="TimeEntries_Tracker_TrackerName" xml:space="preserve">
+    <value>Měřič</value>
+  </data>
+  <data name="Unauthorized_Reason" xml:space="preserve">
+    <value>Došlo k chybě při ověřování přístupu Vašeho účtu k aplikaci. Vyzkoušejte funkci odhlášení nebo kontaktujte administrátora.</value>
+  </data>
+  <data name="Unauthorized_Title" xml:space="preserve">
+    <value>Neautorizovaný přístup</value>
+  </data>
+  <data name="Workspaces_Add" xml:space="preserve">
+    <value>Přidat</value>
+  </data>
+  <data name="Workspaces_Added" xml:space="preserve">
+    <value>Již přidán</value>
+  </data>
+  <data name="Workspaces_ApiTogglToken" xml:space="preserve">
+    <value>API token Toggl účtu</value>
+  </data>
+  <data name="Workspaces_Load" xml:space="preserve">
+    <value>Načíst</value>
+  </data>
+  <data name="Workspaces_LoadedTitle" xml:space="preserve">
+    <value>Načtené workspaces</value>
+  </data>
+  <data name="Workspaces_LoadTitle" xml:space="preserve">
+    <value>Načíst z účtu</value>
+  </data>
+  <data name="Workspaces_Name" xml:space="preserve">
+    <value>Název workspace</value>
+  </data>
+  <data name="Workspaces_Title" xml:space="preserve">
+    <value>Uložené workspaces</value>
+  </data>
+</root>

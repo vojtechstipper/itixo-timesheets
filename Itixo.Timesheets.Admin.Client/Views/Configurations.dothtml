@@ -1,0 +1,66 @@
+﻿@viewModel Itixo.Timesheets.Admin.Client.ViewModels.ConfigurationsViewModel, Itixo.Timesheets.Admin.Client
+@masterPage Views/Base/MasterPage.dotmaster
+@import Itixo.Timesheets.Shared.Resources.AdminClient
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center">
+
+            <bs:Card class="col-md-6">
+                <HeaderTemplate><h3>{{resource: Texts.Synchronizator_Title}}</h3></HeaderTemplate>
+                <bs:CardBody>
+                    <div class="form-row">
+
+                        <div class="col-md-10" DataContext="{value: SyncDateRangeModel}">
+                            <label>{{resource: Texts.Synchronizator_AutoFrom}}</label>
+
+                            <dot:TextBox Text="{value: StopSyncBusinessDaysAgoValue}" Type="Number" min="0" />
+
+                            <label>{{resource: Texts.Synchronizator_AutoTo}}</label>
+
+                            <dot:TextBox Text="{value: StartSyncBusinessDaysAgoValue}" Type="Number" min="0" />
+
+                        </div>
+
+                        <div class="col-md-1 text-center">
+                            <bs:Button id="btnSyncBusiness" Type="Success" Text="{{resource: Texts.Save}}" Click="{command: SaveStartSyncBussinessDaysFromAsync()}" Validation.Enabled="false" />
+                        </div>
+
+                    </div>
+
+                </bs:CardBody>
+            </bs:Card>
+        </div>
+
+        <div class="row justify-content-center align-items-center">
+            <bs:Card class="col-md-6">
+                <HeaderTemplate><h3>{{resource: Texts.Synchronizator_Manual_Title}}</h3></HeaderTemplate>
+                <bs:CardBody>
+                    <div class="form-row">
+
+                        <div class="col-md-10" DataContext="{value: TriggerSynchronizationDto}">
+                            <label>{{resource: Texts.Synchronizator_Manual_From}}</label>
+
+                            <bp:DatePicker SelectedDate="{value: StartDate}" MaxDateTime="{value: EndDate}" FormatString="dd.MM.yyyy" />
+
+                            <label>{{resource: Texts.Synchronizator_Manual_To}}</label>
+
+                            <bp:DatePicker SelectedDate="{value: EndDate}" MinDateTime="{value: StartDate}" FormatString="dd.MM.yyyy" />
+
+                        </div>
+
+                        <div class="col-md-1 text-center">
+                            <bs:Button id="btnTriggerSync" name="btnTriggerSync" Type="Success" Text="{{resource: Texts.Sync}}" Validation.Enabled="false"
+                                       Enabled="{value: !IsSynchronizationLocked}" Click="{command: TriggerSync() }" />
+                        </div>
+
+                    </div>
+
+                </bs:CardBody>
+            </bs:Card>
+        </div>
+    </div>
+</dot:Content>
+

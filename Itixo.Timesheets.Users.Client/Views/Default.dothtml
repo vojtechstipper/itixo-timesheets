@@ -1,0 +1,36 @@
+﻿@viewModel Itixo.Timesheets.Users.Client.ViewModels.DefaultViewModel, Itixo.Timesheets.Users.Client
+@masterPage Views/MasterPage.dotmaster
+@import Itixo.Timesheets.Shared.Resources.UserClient
+
+<dot:Content ContentPlaceHolderID="MainContent">
+    <div class="container-fluid p-1">
+        <div class="form-row w-100 justify-content-center align-items-center">
+
+            <div class="row w-100 justify-content-center align-items-center p-2">
+                <bs:Card>
+                    <HeaderTemplate><h3>{{resource: Texts.RegisterToken}}</h3></HeaderTemplate>
+                    <bs:CardBody>
+                        <bs:Form>
+                            <bs:FormGroup LabelText="{{resource: Texts.TogglUser}}" class="text-left">
+                                <bs:TextBox Text="{value: AccountFormModel.Username}" Enabled="false" />
+                            </bs:FormGroup>
+                            <bs:FormGroup LabelText="{{resource: Texts.Token}}" class="text-left">
+                                <bs:TextBox Text="{value: AccountFormModel.ExternalId}" />
+                            </bs:FormGroup>
+                            <bs:FormGroup class="text-left">
+                                <bs:Button Type="Success" Text="{{resource: Texts.Save}}" Click="{command: _root.AddOrUpdateUserAsync()}" />
+                            </bs:FormGroup>
+                        </bs:Form>
+                    </bs:CardBody>
+                </bs:Card>
+            </div>
+
+            <div class="row p-2" style="height: 800px;">
+                <video width="1580" height="800" controls="controls">
+                    <source src="API_token.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</dot:Content>

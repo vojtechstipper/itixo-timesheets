@@ -1,0 +1,12 @@
+{
+  "AppRoles": [
+    {
+      "Key": "Admin",
+      "RoleName": "TimeEntries.Administrator"
+    },
+    {
+      "Key": "TimeSheetApp",
+      "RoleName": "access_as_timesheets_app"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+﻿@viewModel Itixo.Timesheets.Admin.Client.ViewModels.AccountViewModel, Itixo.Timesheets.Admin.Client
+@masterPage Views/Base/MasterPage.dotmaster
+@import Itixo.Timesheets.Shared.Resources.AdminClient
+
+<dot:Content ContentPlaceHolderID="MainContent">
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center">
+            <bs:Card class="col-md-6">
+                <HeaderTemplate><h3>Nastavení účtu</h3></HeaderTemplate>
+                <bs:CardBody>
+                    <label Visible="{value: !IdentityInfo.DoesIdentityInfoExists}">{{resource: Texts.Account_AddText}} <a href="/ucty">účty</a></label>
+                    <bs:Form Type="Default" DataContext="{value: IdentityInfo}">
+                        <bs:FormGroup LabelText="{{resource: Texts.Email}}">
+                            <bs:TextBox Text="{value: Email}" Enabled="{value: DoesIdentityInfoExists}" />
+                        </bs:FormGroup>
+                        <bs:FormGroup>
+                            <bs:Button Type="Success" Text="{{resource: Texts.Save}}" Click="{command: _root.UpdateIdentity()}"
+                                       Enabled="{value: DoesIdentityInfoExists}" />
+                        </bs:FormGroup>
+                    </bs:Form>
+                </bs:CardBody>
+            </bs:Card>
+        </div>
+    </div>
+</dot:Content>
+

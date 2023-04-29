@@ -1,0 +1,8 @@
+﻿@viewModel Itixo.Timesheets.Users.Client.ViewModels.UnauthorizedViewModel, Itixo.Timesheets.Users.Client
+@masterPage Views/MasterPage.dotmaster
+@import Itixo.Timesheets.Shared.Resources.UserClient
+
+<dot:Content ContentPlaceHolderID="MainContent">
+    <h3>{{resource: Texts.Unauthorized}}</h3>
+</dot:Content>
+

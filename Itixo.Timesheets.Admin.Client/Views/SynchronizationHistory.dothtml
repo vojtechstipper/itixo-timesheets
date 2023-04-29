@@ -1,0 +1,52 @@
+﻿@viewModel Itixo.Timesheets.Admin.Client.ViewModels.SynchronizationHistoryViewModel, Itixo.Timesheets.Admin.Client
+@masterPage Views/Base/MasterPage.dotmaster
+@import Itixo.Timesheets.Shared.Resources.AdminClient
+
+<dot:Content ContentPlaceHolderID="MainContent">
+    <div class="container-fluid">
+        <div class="row col-sm justify-content-center m-1">
+
+            <bs:Card>
+                <HeaderTemplate>{{resource: Texts.TimeEntries_DateRange}}</HeaderTemplate>
+                <bs:CardBody>
+                    <bp:DatePicker SelectedDate="{value: FromDate}" MaxDateTime="{value: ToDate}" FormatString="dd.MM.yyyy" />
+                    <bp:DatePicker SelectedDate="{value: ToDate}" MinDateTime="{value: FromDate}" FormatString="dd.MM.yyyy" />
+                </bs:CardBody>
+            </bs:Card>
+
+        </div>
+
+        <div class="row col-sm justify-content-center m-1">
+            <bs:Button ID="btnfilter" Type="Primary" Text="{{resource: Texts.TimeEntries_Filter_Run}}" Click="{command: SyncLogRecordsGridViewDataSet.IsRefreshRequired = true;}" style="width: 300px; height: 50px; font-size: 20px;" />
+        </div>
+
+        <div class="row col-sm justify-content-center align-items-center">
+            <div class="table-responsive w-75">
+                <bp:GridView DataSource="{value: SyncLogRecordsGridViewDataSet}" class="table" ShowHeaderWhenNoData="true">
+                    <Columns>
+                        <bp:GridViewTextColumn Value="{value: IdentityName}" HeaderText="{{resource: Texts.Sync_History_Who}}" AllowSorting="true" CssClass="text-left" HeaderCssClass="text-left" />
+                        <bp:GridViewDateTimeColumn Value="{value: StartedDate}" HeaderText="{{resource: Texts.Sync_History_StartTime}}" AllowSorting="true" FormatString="dd.MM.yyyy HH:mm:ss" CssClass="text-center" HeaderCssClass="text-center" />
+                        <bp:GridViewDateTimeColumn Value="{value: StoppedDate}" HeaderText="{{resource: Texts.Sync_History_StopTime}}" AllowSorting="true" FormatString="dd.MM.yyyy HH:mm:ss" CssClass="text-center" HeaderCssClass="text-center" />
+                        <bp:GridViewDateTimeColumn Value="{value: SyncedFrom}" HeaderText="{{resource: Texts.Sync_History_EntriesFrom}}" AllowSorting="true" FormatString="dd.MM.yyyy HH:mm:ss" CssClass="text-center" HeaderCssClass="text-center" />
+                        <bp:GridViewDateTimeColumn Value="{value: SyncedTo}" HeaderText="{{resource: Texts.Sync_History_EntriesTo}}" AllowSorting="true" FormatString="dd.MM.yyyy HH:mm:ss" CssClass="text-center" HeaderCssClass="text-center" />
+                        <bp:GridViewTextColumn Value="{value: Duration}" HeaderText="{{resource: Texts.Sync_History_Duration}}" AllowSorting="true" CssClass="text-center" HeaderCssClass="text-center" />
+                        <bp:GridViewTextColumn Value="{value: InsertedApprovedCount}" HeaderText="{{resource: Texts.Sync_History_InsertedApprovedCount}}" CssClass="text-right" HeaderCssClass="text-right" />
+                        <bp:GridViewTextColumn Value="{value: UpdatedApprovedCount}" HeaderText="{{resource: Texts.Sync_History_UpdatedApprovedCount}}" CssClass="text-right" HeaderCssClass="text-right" />
+                        <bp:GridViewTextColumn Value="{value: InsertedDraftedCount}" HeaderText="{{resource: Texts.Sync_History_InsertedDraftedCount}}" CssClass="text-right" HeaderCssClass="text-right" />
+                        <bp:GridViewTextColumn Value="{value: UpdatedDraftedCount}" HeaderText="{{resource: Texts.Sync_History_UpdatedDraftedCount}}" CssClass="text-right" HeaderCssClass="text-right" />
+                        <bp:GridViewTemplateColumn HeaderText="{{resource: Texts.Sync_History_State}}" CssClass="text-center" HeaderCssClass="text-center">
+                            <ContentTemplate>
+                                <bs:Icon Type="check_circle" Visible="{value: Successful}" class="text-success" />
+                                <bs:Icon Type="x_circle" Visible="{value: !Successful}" class="text-danger" />
+                            </ContentTemplate>
+                        </bp:GridViewTemplateColumn>
+                    </Columns>
+                </bp:GridView>
+                <bp:DataPager DataSet="{value: SyncLogRecordsGridViewDataSet}" />
+            </div>
+        </div>
+
+    </div>
+
+</dot:Content>
+

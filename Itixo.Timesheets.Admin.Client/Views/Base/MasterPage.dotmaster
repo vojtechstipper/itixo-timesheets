@@ -1,0 +1,136 @@
+﻿@viewModel Itixo.Timesheets.Admin.Client.ViewModels.MasterPageViewModel, Itixo.Timesheets.Admin.Client
+@import DotVVM.BusinessPack.Controls
+@import Itixo.Timesheets.Shared.Resources.AdminClient
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>{{value: Title}}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+    <link rel="stylesheet" href="StyleSheet.css?v=1.1">
+</head>
+<body class="container-fluid">
+
+    <div class="row">
+        <nav class="navbar navbar-expand-lg bg-light w-100">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+                <span><i class="fas fa-bars"></i></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" ID="main_nav">
+
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                        <dot:Literal Text="{resource: Texts.Nav_Dropdown_TimeEntries}" />  </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="/reporty">
+                                    <dot:Literal Text="{resource: Texts.Nav_Dropdown_TimeEntries_Sum}" />
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/zaznamy">
+                                    <dot:Literal Text="{resource: Texts.Nav_Dropdown_TimeEntries_Detail}" />
+                                </a>
+                            </li>
+                            <dot:RoleView Roles="TimeEntries.Administrator">
+                                <li>
+                                    <a class="dropdown-item" href="/zaznamy-ke-smazani">
+                                        <dot:Literal Text="{resource: Texts.Nav_Dropdown_TimeEntries_PreDelete}" />
+                                    </a>
+                                </li>
+                            </dot:RoleView>
+                            <li>
+                                <a class="dropdown-item" href="/pridat-zaznam">
+                                    <dot:Literal Text="{resource: Texts.Nav_Dropdown_TimeEntries_Add}" />
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <dot:RoleView Roles="TimeEntries.Administrator">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                            <dot:Literal Text="{resource: Texts.Nav_Dropdown_Synchronization}" /></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/synchronizator">
+                                <dot:Literal Text="{resource: Texts.Nav_Dropdown_Synchronization_Synchronizator}" /></a></li>
+                                <li><a class="dropdown-item" href="/historie-synchronizace">
+                                <dot:Literal Text="{resource: Texts.Nav_Dropdown_Synchronization_History}" /></a></li>
+                            </ul>
+                        </li>
+                    </dot:RoleView>
+                    <dot:RoleView Roles="TimeEntries.Administrator">
+                        <li class="nav-item"> <a class="nav-link" href="/workspaces">
+                        <dot:Literal Text="{resource: Texts.Nav_Workspaces}" /></a></li>
+                    </dot:RoleView>
+                </ul>
+                <ul class="navbar-nav my-2 my-lg-0">
+
+                    <li class="nav-item dropdown my-2 my-sm-0">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{value: AccountName}}</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/muj-ucet">
+                            <dot:Literal Text="{resource: Texts.Nav_Dropdown_Account_Settings}" /></a></li>
+                            <li><a class="dropdown-item" href="/ucty">
+                            <dot:Literal Text="{resource: Texts.Nav_Dropdown_Account_Accounts}" /></a> </li>
+                            <li>
+                                <dot:LinkButton Text="{resource: Texts.Nav_Dropdown_Account_Logout}" class="dropdown-item" Click="{command:  Logout()}" Validation.Enabled="false" />
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+    <dot:ContentPlaceHolder ID="MainContent" />
+
+    <bs:Toast class="toast align-right" role="alert" aria-live="assertive" aria-atomic="true" AutoHideDelay="20" IsDisplayed="{value: IsDisplayed}"
+              DataContext="{value: DialogModel}" style="position: absolute; top: 0; right: 0; min-width: 400px;">
+        <HeaderTemplate>
+            <div ID="notify-primary" class="rounded mr-2 bg-primary" style="width:25px;height:20px" Visible="{value: Type == AlertType.Info}" />
+            <div ID="notify-success" class="rounded mr-2 bg-success" style="width:25px;height:20px" Visible="{value: Type == AlertType.Success}" />
+            <div ID="notify-danger" class="rounded mr-2 bg-danger" style="width:25px;height:20px" Visible="{value: Type == AlertType.Danger}" />
+            <dot:Literal class="w-100" Text="{resource: Texts.Dialog_Warning}" />
+        </HeaderTemplate>
+        <ContentTemplate>
+            <dot:HtmlLiteral Html="{{value: Message}}"></dot:HtmlLiteral>
+        </ContentTemplate>
+    </bs:Toast>
+
+    <dot:UpdateProgress Delay="100">
+        <div class="loadingio-spinner-dual-ball-dj4n2izj4b">
+            <div class="ldio-8410r73jkwg">
+                <div> </div> <div> </div> <div> </div>
+            </div>
+        </div>
+    </dot:UpdateProgress>
+
+    <div class="synch-loader" Visible="{value: IsSynchronizationLocked}">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+            <rect x="17.5" y="30" width="15" height="40" fill="#337ab7">
+                <animate attributeName="y" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="18;30;30" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.2s"></animate>
+                <animate attributeName="height" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="64;40;40" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.2s"></animate>
+            </rect>
+            <rect x="42.5" y="30" width="15" height="40" fill="#5bc0de">
+                <animate attributeName="y" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="20.999999999999996;30;30" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.1s"></animate>
+                <animate attributeName="height" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="58.00000000000001;40;40" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.1s"></animate>
+            </rect>
+            <rect x="67.5" y="30" width="15" height="40" fill="#5cb85c">
+                <animate attributeName="y" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="20.999999999999996;30;30" keySplines="0 0.5 0.5 1;0 0.5 0.5 1"></animate>
+                <animate attributeName="height" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="58.00000000000001;40;40" keySplines="0 0.5 0.5 1;0 0.5 0.5 1"></animate>
+            </rect>
+        </svg>
+    </div>
+</body>
+
+<script src="~/js/toast.js"></script>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/togglsync.js"></script>
+<script src="~/js/jquery.doubleScroll.js"></script>
+<script src="~/js/script.js"></script>
+<script src="~/js/gridview_searchbox.js"></script>
+<script src="~/js/multilvlnav.js?v=1.3"></script>
+</html>

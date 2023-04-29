@@ -1,0 +1,23 @@
+﻿@viewModel Itixo.Timesheets.Admin.Client.ViewModels.Common.ErrorViewModel, Itixo.Timesheets.Admin.Client
+@import Itixo.Timesheets.Shared.Resources.AdminClient
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>{{value: Title}}</title>
+    <link rel="stylesheet" href="StyleSheet.css">
+</head>
+<body class="container-fluid">
+    <div class="row">
+        <div class="d-flex flex-column align-items-center justify-content-start m-5" style="height:100vh;">
+            <h1 class="m-5">
+                <dot:Literal Text="{resource: Texts.Error_500_Title}" />
+            </h1>
+            <dot:Literal class="m-2" Text="{resource: Texts.Error_500_Reason}" />
+            <dot:RouteLink class="m-4" class="" RouteName="Default" Text="{resource: Texts.Error_GoBack}" />
+        </div>
+        </dot:Content>
+    </div>
+</body>

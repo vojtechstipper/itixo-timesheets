@@ -1,0 +1,156 @@
+﻿body { }
+
+.borderless td, .borderless th {
+    border: none !important;
+}
+
+/*SPINNER*/
+
+@keyframes ldio-8410r73jkwg-o {
+0%
+{
+    opacity: 1;
+    transform: translate(0 0)
+}
+
+49.99% {
+    opacity: 1;
+    transform: translate(80px,0)
+}
+
+50% {
+    opacity: 0;
+    transform: translate(80px,0)
+}
+
+100% {
+    opacity: 0;
+    transform: translate(0,0)
+}
+
+}
+
+@keyframes ldio-8410r73jkwg {
+    0% {
+        transform: translate(0,0)
+    }
+
+    50% {
+        transform: translate(80px,0)
+    }
+
+    100% {
+        transform: translate(0,0)
+    }
+}
+
+.ldio-8410r73jkwg div {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    top: 60px;
+    left: 20px;
+}
+
+.ldio-8410r73jkwg div:nth-child(1) {
+    background: #007bff;
+    animation: ldio-8410r73jkwg 1.0638297872340425s linear infinite;
+    animation-delay: -0.5319148936170213s;
+}
+
+    .ldio-8410r73jkwg div:nth-child(2) {
+        background: #dee2e6;
+        animation: ldio-8410r73jkwg 1.0638297872340425s linear infinite;
+        animation-delay: 0s;
+    }
+
+.ldio-8410r73jkwg div:nth-child(3) {
+    background: #007bff;
+    animation: ldio-8410r73jkwg-o 1.0638297872340425s linear infinite;
+    animation-delay: -0.5319148936170213s;
+}
+
+.loadingio-spinner-dual-ball-dj4n2izj4b {
+    width: 200px;
+    height: 200px;
+    display: block;
+    overflow: hidden;
+    background: none;
+    z-index: 1;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin: -100px 0px 0px -100px;
+}
+
+.ldio-8410r73jkwg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0; /* see note above */
+}
+
+.ldio-8410r73jkwg div {
+    box-sizing: content-box;
+}
+
+/*/SPINNER*/
+
+/*MULTI LEVEL NAV*/
+.fa, .fas {
+    font-weight: 700;
+    color: #007bff;
+    font-size: 2rem;
+}
+@media (min-width: 992px) {
+    .dropdown-menu .dropdown-toggle:after {
+        border-top: .3em solid transparent;
+        border-right: 0;
+        border-bottom: .3em solid transparent;
+        border-left: .3em solid;
+    }
+
+    .dropdown-menu .dropdown-menu {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .dropdown-menu li {
+        position: relative;
+    }
+
+    .nav-item .submenu {
+        display: none;
+        position: absolute;
+        left: 100%;
+        top: -7px;
+    }
+
+    .nav-item .submenu-left {
+        right: 100%;
+        left: auto;
+    }
+
+    .dropdown-menu > li:hover {
+        background-color: #f1f1f1
+    }
+
+    .dropdown-menu > li:hover > .submenu {
+        display: block;
+    }
+}
+/*/MULTI LEVEL NAV*/
+
+/*SYNCHRONIZATION LOADER*/
+
+.synch-loader {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+}
+
+/*/SYNCHRONIZATION LOADER*/

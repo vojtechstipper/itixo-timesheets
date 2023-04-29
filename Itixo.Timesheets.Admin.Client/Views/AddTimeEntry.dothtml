@@ -1,0 +1,41 @@
+﻿@viewModel Itixo.Timesheets.Admin.Client.ViewModels.AddTimeEntryViewModel, Itixo.Timesheets.Admin.Client
+@masterPage Views/Base/MasterPage.dotmaster
+@import Itixo.Timesheets.Shared.Resources.AdminClient
+
+<dot:Content ContentPlaceHolderID="MainContent">
+    <div class="container-fluid">
+        <div class="row col-sm justify-content-center m-1">
+            <bs:Card DataContext="{value: _this.AddTimeEntryForm}" class="col-4">
+                <HeaderTemplate><h3>{{resource: Texts.TimeEntries_New_Title}}</h3></HeaderTemplate>
+                <bs:CardBody>
+                    <bs:Form Type="Default">
+                        <bs:FormGroup LabelText="{{resource: Texts.TimeEntries_New_Description}}">
+                            <bs:TextBox Text="{{value: Description}}" />
+                        </bs:FormGroup>
+                        <bs:FormGroup LabelText="{{resource: Texts.TimeEntries_New_TaskName}}">
+                            <bs:TextBox Text="{{value: TaskName}}" />
+                        </bs:FormGroup>
+                        <bs:FormGroup LabelText="{{resource: Texts.TimeEntries_New_DateRange}}">
+                            <bp:DateTimePicker SelectedDateTime="{value: StartTime}" MaxDateTime="{value: StopTime}" FormatString="dd.MM.yyyy HH:mm:ss" />
+                            <bp:DateTimePicker SelectedDateTime="{value: StopTime}" MinDateTime="{value: StartTime}" FormatString="dd.MM.yyyy HH:mm:ss" />
+                        </bs:FormGroup>
+                        <bs:ComboBoxFormGroup SelectedValue="{value: ProjectId}" DataSource="{value: Projects}" ItemValueBinding="{value: Id}" ItemTextBinding="{value: Name}" LabelText="{{resource: Texts.TimeEntries_New_ProjectName}}" />
+                        <bs:ComboBoxFormGroup SelectedValue="{value: TimeTrackerAccountId}" DataSource="{value: Accounts}" ItemValueBinding="{value: Id}" ItemTextBinding="{value: Name}" LabelText="{{resource: Texts.TimeEntries_New_User}}" />
+
+                        <dot:RoleView Roles="TimeEntries.Administrator">
+                            <bs:CheckBoxFormGroup Checked="{value:  IsApproved}" LabelText="{{resource: Texts.TimeEntries_New_ApproveEntry}}" />
+                        </dot:RoleView>
+
+                        <dot:ValidationSummary Validation.Target="{value: _this}" Validator.InvalidCssClass="has-error" Validation.Enabled="true" />
+
+                        <bs:FormGroup>
+                            <bs:Button Type="Success" Text="{{resource: Texts.Save}}" Click="{command: _root.AddTimeEntry()}" Validation.Target="{value: _this}" Validation.Enabled="true" />
+                        </bs:FormGroup>
+                    </bs:Form>
+                </bs:CardBody>
+            </bs:Card>
+        </div>
+    </div>
+
+</dot:Content>
+

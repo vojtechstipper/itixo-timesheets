@@ -1,0 +1,347 @@
+﻿@viewModel Itixo.Timesheets.Admin.Client.ViewModels.TimeEntries.PreDeleteTimeEntriesViewModel, Itixo.Timesheets.Admin.Client
+@import Itixo.Timesheets.Contracts.TimeEntries
+@import Itixo.Timesheets.Shared
+@masterPage Views/Base/MasterPage.dotmaster
+@import Itixo.Timesheets.Shared.Resources.AdminClient
+
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <div class="container-fluid">
+        <div class="row col-sm justify-content-center m-1">
+            <bs:Card DataContext="{value: TimeEntriesFilter}">
+                <HeaderTemplate>{{resource: Texts.TimeEntries_DateRange}}</HeaderTemplate>
+                <bs:CardBody>
+                    <bp:DatePicker SelectedDate="{value: FromDate}" MaxDateTime="{value: ToDate}" FormatString="dd.MM.yyyy" Events.Click="{command: _parent.RefreshPostback()}" />
+                    <bp:DatePicker SelectedDate="{value: ToDate}" MinDateTime="{value: FromDate}" FormatString="dd.MM.yyyy" Events.Click="{command: _parent.RefreshPostback()}" />
+                </bs:CardBody>
+            </bs:Card>
+
+            <bs:Card>
+                <bs:CardBody>
+                    <div>
+                        <bp:MultiSelect DataSource="{value: ProjectsFilterModel.Projects}" SelectedValues="{value: ProjectsFilterModel.SelectedProjects}" Placeholder="{{resource: Texts.TimeEntries_Filter_ByProject}}"
+                                        ItemTextBinding="{value: Name}" ItemKeyBinding="{value: Id}" class="col w-100 align-middle" Changed="{command: RefreshPostback()}" />
+                    </div>
+                    <div>
+                        <bp:MultiSelect DataSource="{value: UsersFilterModel.Users}" SelectedValues="{value: UsersFilterModel.SelectedUsers}" Placeholder="{{resource: Texts.TimeEntries_Filter_ByUser}}"
+                                        ItemTextBinding="{value: Username}" ItemKeyBinding="{value: Id}" class="col w-100 align-middle" Changed="{command: RefreshPostback()}" />
+                    </div>
+                    <div>
+                        <bp:MultiSelect DataSource="{value: ClientsFilterModel.Clients}" SelectedValues="{value: ClientsFilterModel.SelectedClients}" Placeholder="{{resource: Texts.TimeEntries_Filter_ByClient}}"
+                                        ItemTextBinding="{value: Name}" ItemKeyBinding="{value: Id}" class="col w-100 align-middle" Changed="{command: ProjectsFilterModel.LoadProjects()}" />
+                    </div>
+                </bs:CardBody>
+            </bs:Card>
+        </div>
+        <div class="row col-sm justify-content-center m-1">
+            <dot:RouteLink RouteName="PreDeleteTimeEntries" class="btn btn-primary" style="width: 300px; height: 50px; font-size: 20px;"
+                           Query-versions="{value: TimeEntriesFilter.IsAllIncludingChildrenRequired}"
+                           Query-pids="{value: ProjectIdsQs}"
+                           Query-cids="{value: ClientIdsQs}"
+                           Query-uids="{value: UserIdsQs}"
+                           Query-from="{value:  FromDateQs}"
+                           Query-to="{value: ToDateQs}"
+                           Text="{{resource: Texts.TimeEntries_Filter_Run}}" />
+        </div>
+
+        <div class="row col-sm justify-content-center align-items-center">
+            <div class="table-responsive">
+                <dot:GridView DataSource="{value: TimeEntriesGridViewDataSet}" class="table" ShowHeaderWhenNoData="true">
+                    <Columns>
+                        <dot:GridViewTemplateColumn CssClass="text-center" HeaderCssClass="align-middle">
+                            <HeaderTemplate>
+                                <dot:LinkButton Text="{{resource: Texts.TimeEntries_TableHeader_Select}}" Click="{command: CheckOrUncheckItems()}" />
+                            </HeaderTemplate>
+                            <ContentTemplate>
+                                <bp:CheckBox Checked="{value: IsChecked}" Changed="{command: _root.RefreshPostback()}" Visible="{value: !IsGroupItem}" />
+                            </ContentTemplate>
+                        </dot:GridViewTemplateColumn>
+
+                        <dot:GridViewTemplateColumn CssClass="text-center" HeaderCssClass="align-middle text-center">
+                            <HeaderTemplate>
+                                <dot:LinkButton Visible="{value: !IsSortedByCreatedDateAscending}" Click="{command: ApplySorting(SortExpression.LastModifiedDate, SortDirection.Ascending)}">{{resource: Texts.TimeEntries_TableHeader_ChangeDate}}</dot:LinkButton>
+                                <dot:LinkButton Visible="{value: IsSortedByCreatedDateAscending}" Click="{command: ApplySorting(SortExpression.LastModifiedDate, SortDirection.Descending)}">{{resource: Texts.TimeEntries_TableHeader_ChangeDate}}</dot:LinkButton>
+                            </HeaderTemplate>
+                            <ContentTemplate>{{value: DisplayLastModifiedDate}}</ContentTemplate>
+                        </dot:GridViewTemplateColumn>
+
+                        <dot:GridViewTemplateColumn CssClass="text-center" HeaderCssClass="align-middle text-center">
+                            <HeaderTemplate>
+                                <dot:LinkButton Visible="{value: !IsSortedByExternalIdAscending}" Click="{command: ApplySorting(SortExpression.ExternalId, SortDirection.Ascending)}">{{resource: Texts.TimeEntries_TableHeader_IdInTimeTracker}}</dot:LinkButton>
+                                <dot:LinkButton Visible="{value: IsSortedByExternalIdAscending}" Click="{command: ApplySorting(SortExpression.ExternalId, SortDirection.Descending)}">{{resource: Texts.TimeEntries_TableHeader_IdInTimeTracker}}</dot:LinkButton>
+                            </HeaderTemplate>
+                            <ContentTemplate>{{value: ExternalId}}</ContentTemplate>
+                        </dot:GridViewTemplateColumn>
+
+                        <dot:GridViewTemplateColumn CssClass="text-center">
+                            <HeaderTemplate>
+                                <table class="table borderless" style="min-width:240px">
+                                    <tr>
+                                        <td rowspan="2" class="align-middle">
+                                            <dot:TextBox class="w-100 searchbox" Placeholder="{{resource: Texts.TimeEntries_TableHeader_ProjectName}}" Text="{{value: TimeEntriesFilter.ProjectNameSearchText}}" Type="Search"
+                                                           Changed="{command: Filter()}" UpdateTextOnInput="true" />
+                                        </td>
+                                        <td>
+                                            <summary>
+                                                <bp:Icon Icon="ChevronUp" Visible="{value: !IsSortedByProjectNameAscending}"
+                                                         Events.Click="{command: ApplySorting(SortExpression.ProjectName, SortDirection.Ascending)}" />
+                                                <bp:FAIcon Icon="ChevronUpSolid" Visible="{value: IsSortedByProjectNameAscending}"
+                                                           Events.Click="{command: ApplySorting(SortExpression.ProjectName, SortDirection.Ascending)}" />
+                                            </summary>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <summary>
+                                                <bp:Icon Icon="ChevronDown" Visible="{value: !IsSortedByProjectNameDescending}"
+                                                         Events.Click="{command: ApplySorting(SortExpression.ProjectName, SortDirection.Descending)}" />
+                                                <bp:FAIcon Icon="ChevronDownSolid" Visible="{value: IsSortedByProjectNameDescending}"
+                                                           Events.Click="{command: ApplySorting(SortExpression.ProjectName, SortDirection.Descending)}" />
+                                            </summary>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </HeaderTemplate>
+                            <ContentTemplate>{{value: ProjectName}}</ContentTemplate>
+                        </dot:GridViewTemplateColumn>
+
+                        <dot:GridViewTemplateColumn CssClass="text-left">
+                            <HeaderTemplate>
+                                <table class="table borderless" style="min-width:240px">
+                                    <tr>
+                                        <td rowspan="2" class="align-middle">
+                                            <dot:TextBox class="w-100 searchbox" Placeholder="{{resource: Texts.TimeEntries_TableHeader_TaskName}}" Text="{{value: TimeEntriesFilter.TaskNameSearchText}}" Type="Search"
+                                                           Changed="{command: Filter()}" UpdateTextOnInput="true" />
+                                        </td>
+                                        <td>
+                                            <summary>
+                                                <bp:Icon Icon="ChevronUp" Visible="{value: !IsSortedByTaskNameAscending}"
+                                                         Events.Click="{command: ApplySorting(SortExpression.TaskName, SortDirection.Ascending)}" />
+                                                <bp:FAIcon Icon="ChevronUpSolid" Visible="{value: IsSortedByTaskNameAscending}"
+                                                           Events.Click="{command: ApplySorting(SortExpression.TaskName, SortDirection.Ascending)}" />
+                                            </summary>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <summary>
+                                                <bp:Icon Icon="ChevronDown" Visible="{value: !IsSortedByTaskNameDescending}"
+                                                         Events.Click="{command: ApplySorting(SortExpression.TaskName, SortDirection.Descending)}" />
+                                                <bp:FAIcon Icon="ChevronDownSolid" Visible="{value: IsSortedByTaskNameDescending}"
+                                                           Events.Click="{command: ApplySorting(SortExpression.TaskName, SortDirection.Descending)}" />
+                                            </summary>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </HeaderTemplate>
+                            <ContentTemplate>{{value: TaskName}}</ContentTemplate>
+                        </dot:GridViewTemplateColumn>
+
+                        <dot:GridViewTemplateColumn CssClass="text-center">
+                            <HeaderTemplate>
+                                <table class="table borderless" style="min-width:240px">
+                                    <tr>
+                                        <td rowspan="2" class="align-middle">
+                                            <dot:TextBox class="w-100 searchbox" Placeholder="{{resource: Texts.TimeEntries_TableHeader_UserName}}" Text="{{value: TimeEntriesFilter.UsernameSearchText}}" Type="Search"
+                                                           Changed="{command: Filter()}" UpdateTextOnInput="true" />
+                                        </td>
+                                        <td>
+                                            <summary>
+                                                <bp:Icon Icon="ChevronUp" Visible="{value: !IsSortedByUsernameAscending}"
+                                                         Events.Click="{command: ApplySorting(SortExpression.Username, SortDirection.Ascending)}" />
+                                                <bp:FAIcon Icon="ChevronUpSolid" Visible="{value: IsSortedByUsernameAscending}"
+                                                           Events.Click="{command: ApplySorting(SortExpression.Username, SortDirection.Ascending)}" />
+                                            </summary>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <summary>
+                                                <bp:Icon Icon="ChevronDown" Visible="{value: !IsSortedByUsernameDescending}"
+                                                         Events.Click="{command: ApplySorting(SortExpression.Username, SortDirection.Descending)}" />
+                                                <bp:FAIcon Icon="ChevronDownSolid" Visible="{value: IsSortedByUsernameDescending}"
+                                                           Events.Click="{command: ApplySorting(SortExpression.Username, SortDirection.Descending)}" />
+                                            </summary>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </HeaderTemplate>
+                            <ContentTemplate>{{value: Username}}</ContentTemplate>
+                        </dot:GridViewTemplateColumn>
+
+                        <dot:GridViewTemplateColumn CssClass="text-left">
+                            <HeaderTemplate>
+                                <table class="table borderless" style="min-width:610px;">
+                                    <tr>
+                                        <td rowspan="2" class="align-middle">
+                                            <dot:TextBox Placeholder="{{resource: Texts.TimeEntries_TableHeader_Description}}" class="w-100 searchbox" Text="{{value: TimeEntriesFilter.DescriptionSearchText}}" Type="Search"
+                                                           Changed="{command: Filter()}" UpdateTextOnInput="true" />
+                                        </td>
+                                        <td>
+                                            <summary>
+                                                <bp:Icon Icon="ChevronUp" Visible="{value: !IsSortedByDescriptionAscending}"
+                                                         Events.Click="{command: ApplySorting(SortExpression.Description, SortDirection.Ascending)}" />
+                                                <bp:FAIcon Icon="ChevronUpSolid" Visible="{value: IsSortedByDescriptionAscending}"
+                                                           Events.Click="{command: ApplySorting(SortExpression.Description, SortDirection.Ascending)}" />
+                                            </summary>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <summary>
+                                                <bp:Icon Icon="ChevronDown" Visible="{value: !IsSortedByDescriptionDescending}"
+                                                         Events.Click="{command: ApplySorting(SortExpression.Description, SortDirection.Descending)}" />
+                                                <bp:FAIcon Icon="ChevronDownSolid" Visible="{value: IsSortedByDescriptionDescending}"
+                                                           Events.Click="{command: ApplySorting(SortExpression.Description, SortDirection.Descending)}" />
+                                            </summary>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </HeaderTemplate>
+                            <ContentTemplate>
+                                <div title="{{value: Description}}" style="max-width: 610px;overflow:hidden;">
+                                    <dot:Literal Text="{{value: Description}}" Visible="{value: !HasVersions}" />
+                                    <dot:LinkButton Text="{{value: Description}}" Click="{command: _root.TimeEntryVersionsViewModel.ShowVersions(_this.Id)}" Visible="{value: HasVersions}" />
+                                </div>
+                            </ContentTemplate>
+                        </dot:GridViewTemplateColumn>
+
+                        <dot:GridViewTemplateColumn CssClass="text-center">
+                            <HeaderTemplate>
+                                <table class="table borderless" style="min-width: 235px">
+                                    <tr>
+                                        <td rowspan="2" class="align-middle">
+                                            <dot:TextBox class="w-100 searchbox" Placeholder="{{resource: Texts.TimeEntries_TableHeader_InvoiceNo}}" UpdateTextOnInput="true"
+                                                         Text="{{value: TimeEntriesFilter.InvoiceNumberSearchText}}" Type="Search" Changed="{command: Filter()}" />
+                                        </td>
+                                        <td>
+                                            <summary>
+                                                <bp:Icon Icon="ChevronUp" Visible="{value: !IsSortedByInvoiceNumberAscending}"
+                                                         Events.Click="{command: ApplySorting(SortExpression.InvoiceNumber, SortDirection.Ascending)}" />
+                                                <bp:FAIcon Icon="ChevronUpSolid" Visible="{value: IsSortedByInvoiceNumberAscending}"
+                                                           Events.Click="{command: ApplySorting(SortExpression.InvoiceNumber, SortDirection.Ascending)}" />
+                                            </summary>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <summary>
+                                                <bp:Icon Icon="ChevronDown" Visible="{value: !IsSortedByInvoiceNumberDescending}"
+                                                         Events.Click="{command: ApplySorting(SortExpression.InvoiceNumber, SortDirection.Descending)}" />
+                                                <bp:FAIcon Icon="ChevronDownSolid" Visible="{value: IsSortedByInvoiceNumberDescending}"
+                                                           Events.Click="{command: ApplySorting(SortExpression.InvoiceNumber, SortDirection.Descending)}" />
+                                            </summary>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </HeaderTemplate>
+                            <ContentTemplate>
+                                <div class="w-100 align-middle">
+                                    <label>{{value: InvoiceNumber}}</label>
+                                </div>
+                            </ContentTemplate>
+                        </dot:GridViewTemplateColumn>
+
+                        <dot:GridViewTemplateColumn CssClass="text-center" HeaderCssClass="align-middle text-center">
+                            <HeaderTemplate>
+                                <dot:LinkButton Visible="{value: !IsSortedByStateAscending}" Click="{command: ApplySorting(SortExpression.State, SortDirection.Ascending)}">{{resource: Texts.TimeEntries_TableHeader_StateName}}</dot:LinkButton>
+                                <dot:LinkButton Visible="{value: IsSortedByStateAscending}" Click="{command: ApplySorting(SortExpression.State, SortDirection.Descending)}">{{resource: Texts.TimeEntries_TableHeader_StateName}}</dot:LinkButton>
+                            </HeaderTemplate>
+                            <ContentTemplate>
+
+                                <dot:RoleView Roles="TimeEntries.Administrator">
+                                    <IsMemberTemplate>
+                                        <dot:LinkButton Text="{value: State}" Click="{command: _root.TimeEntryStateChangesViewModel.ShowChanges(_this.Id)}" />
+                                    </IsMemberTemplate>
+                                    <IsNotMemberTemplate>
+                                        {{value: State}}
+                                    </IsNotMemberTemplate>
+                                </dot:RoleView>
+
+                            </ContentTemplate>
+                        </dot:GridViewTemplateColumn>
+
+                        <dot:GridViewTemplateColumn CssClass="text-center" HeaderCssClass="align-middle text-center">
+                            <HeaderTemplate>
+                                <dot:LinkButton Visible="{value: !IsSortedByDurationAscending}" Click="{command: ApplySorting(SortExpression.Duration, SortDirection.Ascending)}">{{resource: Texts.TimeEntries_TableHeader_Duration}}</dot:LinkButton>
+                                <dot:LinkButton Visible="{value: IsSortedByDurationAscending}" Click="{command: ApplySorting(SortExpression.Duration, SortDirection.Descending)}">{{resource: Texts.TimeEntries_TableHeader_Duration}}</dot:LinkButton>
+                            </HeaderTemplate>
+                            <ContentTemplate>{{value: Duration}}</ContentTemplate>
+                        </dot:GridViewTemplateColumn>
+
+                        <dot:GridViewTemplateColumn CssClass="text-center" HeaderCssClass="align-middle text-center">
+                            <HeaderTemplate>
+                                <dot:LinkButton Visible="{value: !IsSortedByStartTimeAscending}" Click="{command: ApplySorting(SortExpression.StartTime, SortDirection.Ascending)}">{{resource: Texts.TimeEntries_TableHeader_StartTime}}</dot:LinkButton>
+                                <dot:LinkButton Visible="{value: IsSortedByStartTimeAscending}" Click="{command: ApplySorting(SortExpression.StartTime, SortDirection.Descending)}">{{resource: Texts.TimeEntries_TableHeader_StartTime}}</dot:LinkButton>
+                            </HeaderTemplate>
+                            <ContentTemplate>{{value: DisplayStartTime}}</ContentTemplate>
+                        </dot:GridViewTemplateColumn>
+
+                        <dot:GridViewTemplateColumn CssClass="text-center" HeaderCssClass="align-middle text-center">
+                            <HeaderTemplate>
+                                <dot:LinkButton Visible="{value: !IsSortedByStopTimeAscending}" Click="{command: ApplySorting(SortExpression.StopTime, SortDirection.Ascending)}">{{resource: Texts.TimeEntries_TableHeader_EndTime}}</dot:LinkButton>
+                                <dot:LinkButton Visible="{value: IsSortedByStopTimeAscending}" Click="{command: ApplySorting(SortExpression.StopTime, SortDirection.Descending)}">{{resource: Texts.TimeEntries_TableHeader_EndTime}}</dot:LinkButton>
+                            </HeaderTemplate>
+                            <ContentTemplate>{{value: DisplayStopTime}}</ContentTemplate>
+                        </dot:GridViewTemplateColumn>
+
+                        <dot:GridViewTemplateColumn CssClass="text-center" HeaderText="Akce" HeaderCssClass="align-middle text-center">
+                            <ContentTemplate>
+                                <dot:RoleView Roles="TimeEntries.Administrator">
+                                    <div class="dropdown" Visible="{value: !IsGroupItem}">
+                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" ID="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {{resource: Texts.TimeEntries_TableHeader_Actions}}
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <dot:LinkButton class="dropdown-item" Text="{{resource: Texts.TimeEntries_TableHeader_Action_Approve}}" Click="{command: _root.ApproveTimeEntryDraft(_this)}" />
+                                            <dot:LinkButton class="dropdown-item" Text="{{resource: Texts.TimeEntries_TableHeader_Action_Delete}}" Click="{command: _root.DeleteTimeEntry(_this)}" />
+                                        </div>
+                                    </div>
+                                </dot:RoleView>
+                            </ContentTemplate>
+                        </dot:GridViewTemplateColumn>
+                </dot:GridView>
+            </div>
+        </div>
+
+        <div class="row col-sm justify-content-center align-items-center">
+            <ul class="pagination">
+                <li class="page-item"><dot:LinkButton class="page-link" href="#" Click="{{command: Pager.GoFirstPage(TimeEntriesGridViewDataSet)}}" Text="1" /></li>
+                <li class="page-item"><dot:LinkButton class="page-link" href="#" Text="{{resource: Texts.TimeEntries_TablePager_Previous}}" Click="{{command: Pager.GoPreviousPage(TimeEntriesGridViewDataSet)}}" /></li>
+                <li class="page-item active"><dot:LinkButton class="page-link" href="#">{{value: Pager.Paging.CurrentPage}}</dot:LinkButton></li>
+                <li class="page-item"><dot:LinkButton class="page-link" href="#" Text="{{resource: Texts.TimeEntries_TablePager_Next}}" Click="{{command: Pager.GoNextPage(TimeEntriesGridViewDataSet)}}" /></li>
+                <li class="page-item"><dot:LinkButton class="page-link" href="#" Click="{{command: Pager.GoLastPage(TimeEntriesGridViewDataSet)}}" Text="{{value: Pager.Paging.LastPage}}" /></li>
+            </ul>
+        </div>
+
+        <div class="row col-sm">
+            <nav class="justify-content-center align-items-center navbar navbar-light bg-light fixed-bottom row w-50" Visible="{value: IsAnyItemChecked}">
+
+                <div class="row">
+                    <dot:RoleView Roles="TimeEntries.Administrator">
+                        <div class="col-sm">
+                            <bs:Button Type="Success" Text="{{resource: Texts.TimeEntries_ApproveSelected}}" Click="{command: ApproveCheckedItems()}" />
+                        </div>
+                        <div class="col-sm">
+                            <bs:Button Type="Info" Text="{{resource: Texts.TimeEntries_DeleteSelected}}" Click="{command: DeleteCheckedItems()}" />
+                        </div>
+                    </dot:RoleView>
+
+                    <div class="col-sm">
+                        <bs:Button Type="Link" Text="Zrušit" Click="{command: CheckOrUncheckItems()}" />
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <my:TimeEntryVersionsWindow DataContext="{value: TimeEntryVersionsViewModel}" />
+    <dot:RoleView Roles="TimeEntries.Administrator">
+        <my:TimeEntryStateChangesWindow DataContext="{value: TimeEntryStateChangesViewModel}" />
+    </dot:RoleView>
+</dot:Content>
+

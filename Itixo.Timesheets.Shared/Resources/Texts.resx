@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ApiReponse_ConfigurationUpdated_Configuration_Has_Been_Updated_With_Value" xml:space="preserve">
+    <value>Configuration has been updated with value {0}</value>
+  </data>
+  <data name="ApiResponse_ConfigurationNotChanged_Record_Already_Exists" xml:space="preserve">
+    <value>Record already exists</value>
+  </data>
+  <data name="ApiResponse_InsertedConfiguration_Configuration_With_Value_Has_Been_Added" xml:space="preserve">
+    <value>Configuration with value {0} has been added</value>
+  </data>
+  <data name="ApiUserRepository_NotFoundMessage_ExternalId_Was_Not_Found_In_Database" xml:space="preserve">
+    <value>ExternalId was not found in database</value>
+  </data>
+  <data name="ApiUserRepository_NotFound_ExternalId_Was_Not_Found" xml:space="preserve">
+    <value>ExternalId was not found</value>
+  </data>
+  <data name="BadRequest_Message_Not_Allowed_Method" xml:space="preserve">
+    <value>Not allowed method</value>
+  </data>
+  <data name="CommonAPiValidation_InvalidData_Invalid_form_data" xml:space="preserve">
+    <value>Invalid form data.</value>
+  </data>
+  <data name="ProjectRepository_RemoveProjectAsync_Project_With_Id_Was_Not_Found" xml:space="preserve">
+    <value>Project with Id {0} was not found</value>
+  </data>
+  <data name="Repository_AddMessage_Record_Was_Created" xml:space="preserve">
+    <value>Record was created</value>
+  </data>
+  <data name="Repository_RemoveMessage_Record_Was_Successfully_Removed" xml:space="preserve">
+    <value>Record was successfully removed</value>
+  </data>
+  <data name="Repository_UpdateMessage_Record_Was_Updated" xml:space="preserve">
+    <value>Record was updated</value>
+  </data>
+  <data name="SynchronizationFunction_Run_Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="WorkspaceRepository_NotFoundWorkspace_Workspace_Id_Not_Found" xml:space="preserve">
+    <value>Workspace Id {0} not found</value>
+  </data>
+  <data name="Synchronization_SuccessMessage_Synchronization_Done" xml:space="preserve">
+    <value>Synchronizace byla dokončena.</value>
+  </data>
+  <data name="AddingAccess_SuccessMessage_Adding_Was_Successful" xml:space="preserve">
+    <value>Účet úspěšně přidán.</value>
+  </data>
+  <data name="DeleteAccount_ErrorMessage_Delete_Was_Not_Successful" xml:space="preserve">
+    <value>Smazání účtu se nepodařilo.</value>
+  </data>
+  <data name="DeleteAccount_SuccessMessage_Delete_Was_Successful" xml:space="preserve">
+    <value>Účet uložen.</value>
+  </data>
+  <data name="ApproveTimeEntryDraft_ErrorMessage_Record_Cant_Be_Approved" xml:space="preserve">
+    <value>Záznam se nepodařilo schválit.</value>
+  </data>
+  <data name="ApproveTimeEntryDraft_SuccessMessage_Record_Was_Approved" xml:space="preserve">
+    <value>Záznam schválen.</value>
+  </data>
+  <data name="BanTimeEntryDraft_SuccessMessage_Record_Was_Banned" xml:space="preserve">
+    <value>Záznam zamítnut.</value>
+  </data>
+  <data name="BulkApproveTimeEntryDrafts_ErrorMessage_Records_Approvement_Was_Not_Successful" xml:space="preserve">
+    <value>Záznamy se nepodařilo schválit.</value>
+  </data>
+  <data name="BulkApproveTimeEntryDrafts_SuccessMessage_Records_Approvement_Was_Successful" xml:space="preserve">
+    <value>Záznamy schváleny a uloženy do Záznamů.</value>
+  </data>
+  <data name="BulkBanTimeEntryDrafts_ErrorMessage_Records_Ban_Was_Not_Successful" xml:space="preserve">
+    <value>Nejsou vybrané záznamy.</value>
+  </data>
+  <data name="BulkBanTimeEntryDrafts_SuccessMessage_Records_Ban_Was_Successful" xml:space="preserve">
+    <value>Záznamy byly zamítnuty.</value>
+  </data>
+  <data name="AddWorkspace_SuccessMessage_Workspace_Added" xml:space="preserve">
+    <value>Workspace přidán.</value>
+  </data>
+  <data name="RemvoeWorkspaces_Success_Message_Workspace_Removed" xml:space="preserve">
+    <value>Workspaces odebrán.</value>
+  </data>
+  <data name="Account_Failed_To_Load_Identity_Info" xml:space="preserve">
+    <value>Nepodařilo se načíst údaje. Kontaktujte administrátora.</value>
+  </data>
+  <data name="BulkDeleteTimeEntries_ErrorMessage_Records_Not_Selected" xml:space="preserve">
+    <value>Nebyly vybrány žádné záznamy</value>
+  </data>
+  <data name="BulkDeleteTimeEntryDrafts_SuccessMessage_Records_Delete_Was_Successful" xml:space="preserve">
+    <value>Záznamy úspěšně smazány</value>
+  </data>
+  <data name="DeleteTimeEntryDraft_SuccessMessage_Record_Was_Deleted" xml:space="preserve">
+    <value>Záznam úspěšně smazán</value>
+  </data>
+</root>
